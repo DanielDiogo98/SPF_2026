@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Universo Literário</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="shortcut icon" href="favicon/favicon-16x16.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Qwigley&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ================= FUNDO ================= */
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top, #020817, #00030a 75%), url("https://www.transparenttextures.com/patterns/stardust.png");
+            background-blend-mode: screen;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(250, 204, 21, 0.15), transparent 40%), radial-gradient(circle at 80% 70%, rgba(250, 204, 21, 0.12), transparent 40%);
+            pointer-events: none;
+        }
+        /* ================= CONTAINER ================= */
+        
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+            width: 100%;
+        }
+        /* ================= HEADER ================= */
+        
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            text-align: center;
+        }
+        
+        .icon-top {
+            width: 120px;
+            position: absolute;
+            left: 0;
+        }
+        
+        .titulo {
+            text-align: center;
+            padding: 0 10px;
+        }
+        
+        h1 {
+            font-size: 52px;
+            margin-bottom: 10px;
+            font-family: "EB Garamond", serif;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(250, 204, 21, 0.5);
+        }
+        
+        .subtitle {
+            color: #facc15;
+            font-family: "EB Garamond", serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        /* ================= ICONES ================= */
+        
+        .icon-row {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        
+        .icon-large {
+            width: 80px;
+            height: 80px;
+            transition: 0.3s;
+            max-width: 100%;
+        }
+        
+        .icon-large:hover {
+            transform: scale(1.4);
+        }
+        /* ================= TITULO ================= */
+        
+        .ranking-title {
+            text-align: center;
+            font-size: 26px;
+            color: #facc15;
+            margin-top: 20px;
+            font-weight: bold;
+            padding-bottom: 40px;
+            font-family: "EB Garamond", serif;
+        }
+        /* ================= CARD ================= */
+        
+        .card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 2px solid #facc15;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            background: rgba(0, 0, 0, 0.45);
+            backdrop-filter: blur(6px);
+            transition: 0.25s;
+            animation: fadeIn 0.5s ease;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(250, 204, 21, 0.5), 0 0 30px rgba(250, 204, 21, 0.3);
+        }
+        
+        .card:first-child {
+            border: 3px solid gold;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        }
+        /* ================= LEFT ================= */
+        
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .position {
+            border: 2px solid #facc15;
+            color: #facc15;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        /* ================= INFO ================= */
+        
+        .info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sala {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .tema {
+            color: #cbd5f5;
+            font-size: 14px;
+        }
+        /* ================= RIGHT ================= */
+        
+        .right {
+            text-align: right;
+            min-width: 160px;
+            flex: 1;
+        }
+        
+        .points {
+            font-weight: bold;
+            color: #facc15;
+            font-size: 18px;
+        }
+        
+        .bar {
+            height: 8px;
+            background: #1e293b;
+            border-radius: 10px;
+            margin-top: 6px;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .fill {
+            height: 100%;
+            width: 0%;
+            transition: width 0.6s;
+        }
+        /* ================= FOOTER ================= */
+        
+        footer {
+            margin-top: 30px;
+            padding: 25px;
+            border: 2px solid #facc15;
+            border-radius: 14px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.4);
+        }
+        /* ================= ANIMAÇÃO ================= */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* ================= RESPONSIVO ================= */
+        
+        @media (max-width: 900px) {
+            h1 {
+                font-size: 42px;
+            }
+        }
+        
+        @media (max-width: 700px) {
+            .icon-top {
+                position: relative;
+                left: auto;
+                margin-bottom: 10px;
+            }
+            header {
+                flex-direction: column;
+            }
+            .right {
+                text-align: left;
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 34px;
+            }
+            .subtitle {
+                font-size: 14px;
+            }
+            .icon-large {
+                width: 60px;
+                height: 60px;
+            }
+            .card {
+                padding: 14px;
+            }
+            .sala {
+                font-size: 16px;
+            }
+            .points {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img class="icon-top" src="images/logo.png" />
+
+            <div class="titulo">
+                <h1>UNIVERSO LITERÁRIO</h1>
+                <div class="subtitle">
+                    HISTÓRIAS QUE INSPIRAM,<br /> ATITUDES QUE TRANSFORMAM.
+                </div>
+            </div>
+        </header>
+
+        <div class="icon-row">
+            <img class="icon-large" src="images/jogos-vorazes.png" />
+            <img class="icon-large" src="images/narnia.png" />
+            <img class="icon-large" src="images/alice-borderland.png" />
+            <img class="icon-large" src="images/coraline.png" />
+            <img class="icon-large" src="images/senhor.png" />
+            <img class="icon-large" src="images/hr.png" />
+            <img class="icon-large" src="images/percy.png" />
+        </div>
+
+        <div class="ranking-title">RANKING DAS SALAS</div>
+
+        <div id="ranking"></div>
+
+        <footer>
+            <div>Cada doação é uma nova página na nossa história.</div>
+        </footer>
+    </div>
+
+    <script>
+        const salas = [{
+            sala: "1°A",
+            tema: "Jogos Vorazes",
+            pontos: 141500,
+            icon: "images/jogos-vorazes.png",
+            cor: "#264cad",
+        }, {
+            sala: "1°B",
+            tema: "As Crônicas de Nárnia",
+            pontos: 550000,
+            icon: "images/narnia.png",
+            cor: "green",
+        }, {
+            sala: "1°C",
+            tema: "Alice no País das Maravilhas",
+            pontos: 0,
+            icon: "images/alice-borderland.png",
+            cor: "purple",
+        }, {
+            sala: "1°E",
+            tema: "Coraline",
+            pontos: 312400,
+            icon: "images/coraline.png",
+            cor: "#eb7713",
+        }, {
+            sala: "2°A",
+            tema: "Senhor dos Anéis",
+            pontos: 135000,
+            icon: "images/senhor.png",
+            cor: "#c00c08",
+        }, {
+            sala: "2°B",
+            tema: "Harry Potter",
+            pontos: 0,
+            icon: "images/hr.png",
+            cor: "#b1941e",
+        }, {
+            sala: "2°C",
+            tema: "Percy Jackson",
+            pontos: 0,
+            icon: "images/percy.png",
+            cor: "#fc51d2",
+        }, ];
+
+        function renderRanking() {
+            const rankingDiv = document.getElementById("ranking");
+
+            salas.sort((a, b) => b.pontos - a.pontos);
+            rankingDiv.innerHTML = "";
+
+            const max = Math.max(...salas.map((s) => s.pontos));
+
+            salas.forEach((sala, index) => {
+                const percent = max > 0 ? (sala.pontos / max) * 100 : 0;
+
+                const card = document.createElement("div");
+                card.className = "card";
+
+                card.innerHTML = `
+                <div class="left">
+                    <div class="position">${index + 1}</div>
+                    <img class="icon" src="${sala.icon}">
+                    <div class="info">
+                        <div class="sala">${sala.sala}</div>
+                        <div class="tema">${sala.tema}</div>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <div class="points">${sala.pontos.toLocaleString()}</div>
+                    <div class="bar">
+                        <div class="fill" style="width:${percent}%; background:${sala.cor}"></div>
+                    </div>
+                </div>
+                `;
+
+                rankingDiv.appendChild(card);
+            });
+        }
+
+        renderRanking();
+    </script>
+</body>
+
+</html>
